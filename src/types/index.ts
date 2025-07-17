@@ -11,16 +11,25 @@ export interface IAppState {
 	catalog: IProduct[];
 	order: IOrder;
 	basket: IProduct[];
-	preview: string | null;
+	preview: IProduct | null;
 }
 
 export interface IProduct {
-	_id: string;
+	id: string;
 	description: string;
 	image: string;
 	title: string;
 	category: TCategory;
 	price: number;
+}
+
+export interface ICard extends IProduct {
+	index?: string;
+	textButton?: string;
+}
+
+export interface ICardActions {
+	onClick: (event: MouseEvent) => void;
 }
 
 export interface IPage {
@@ -29,20 +38,18 @@ export interface IPage {
 	counter: number;
 }
 
-export interface ICard {
-	id: string;
-	title: string;
-	description: string;
-	image: string;
-	category: string;
-	price: number;
-	textButton: string;
-	selected: boolean;
+export interface IModalData {
+	content: HTMLElement;
 }
 
-export interface IBasket {
+export interface IFormState {
+	valid: boolean;
+	errors: string[];
+}
+
+export interface IBasketView {
 	total: number;
-	products: HTMLElement[];
+	items: HTMLElement[];
 }
 
 export interface IOrderForm {
@@ -60,7 +67,7 @@ export interface IOrder extends IOrderForm, IContactsForm {
 	total: number;
 }
 
-export interface IOrderSuccess {
+export interface ISuccess {
 	id: string;
 	total: number;
 }
